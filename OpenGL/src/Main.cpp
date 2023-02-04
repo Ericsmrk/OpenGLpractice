@@ -1,4 +1,8 @@
+#include <GL/glew.h>
 #include <GLFW/glfw3.h>
+
+#include <iostream>
+using namespace std;
 
 int main(void)
 {
@@ -19,6 +23,11 @@ int main(void)
     /* Make the window's context current */
     glfwMakeContextCurrent(window);
 
+	if (GLEW_OK != glewInit())
+		cout << "terrorize" << endl;
+
+    cout << glGetString(GL_VERSION) << endl;
+
     /* Loop until the user closes the window */
     while (!glfwWindowShouldClose(window))
     {
@@ -30,8 +39,6 @@ int main(void)
         glVertex2f(0.0f, 0.5f);
         glVertex2f(0.5f, -0.5f);
         glEnd();
-
-
 
         /* Swap front and back buffers */
         glfwSwapBuffers(window);
